@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --muted: #737373;
+  --surface: #ffffff;
+  --surface-elevated: #f5f5f5;
+  --border: #e5e5e5;
+  --brand: #171717;
+  --brand-accent: #2563eb;
+  --brand-accent-soft: #eff6ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-soft: var(--brand-accent-soft);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.section-label {
+  @apply text-xs font-semibold uppercase tracking-[0.2em] text-brand-accent;
+}
+
+.section-heading {
+  @apply text-3xl font-semibold tracking-tight text-brand sm:text-4xl lg:text-5xl;
+}
+
+.section-subtext {
+  @apply text-base leading-relaxed text-muted sm:text-lg;
+}
