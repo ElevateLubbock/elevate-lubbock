@@ -74,12 +74,12 @@ export default function WebsiteAudit() {
                   href="/#portfolio"
                   className="btn-secondary w-full border-white/20 bg-transparent text-white hover:border-white/35 hover:bg-white/5"
                 >
-                  See Results From Local Clients
+                  See Our Featured Projects
                 </Link>
               </div>
 
               <p className="mt-5 text-center text-xs text-white/40">
-                Trusted by 50+ Lubbock-area businesses · No spam, ever
+                Built for Lubbock businesses that want to grow online.
               </p>
             </div>
           </Reveal>

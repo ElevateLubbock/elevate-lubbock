@@ -2,12 +2,20 @@ import Link from "next/link";
 import HeroBackground from "@/components/HeroBackground";
 import Reveal from "@/components/Reveal";
 
-const stats = [
-  { value: "50+", label: "Lubbock businesses served" },
-  { value: "3.2×", label: "Avg. increase in qualified leads" },
-  { value: "14 days", label: "Median time to launch" },
+const pillars = [
+  {
+    value: "Local",
+    label: "Proudly serving businesses throughout Lubbock and West Texas.",
+  },
+  {
+    value: "Modern",
+    label: "Fast, mobile-friendly websites built with today's best practices.",
+  },
+  {
+    value: "Trust",
+    label: "Building our reputation one successful client relationship at a time.",
+  },
 ];
-
 const trustBarItems = [
   "Mobile First",
   "SEO Ready",
@@ -40,8 +48,8 @@ export default function Hero() {
 
           <Reveal delay={160}>
             <p className="mx-auto mt-6 max-w-2xl text-[1.0625rem] leading-[1.65] text-muted sm:mt-8 sm:text-xl sm:leading-[1.7]">
-              We design high-converting websites for Lubbock businesses that want
-              more calls, more leads, and more customers.
+              We build modern, high-performing websites that help Lubbock businesses
+              earn trust, generate more leads, and turn more visitors into customers.
             </p>
           </Reveal>
 
@@ -87,28 +95,30 @@ export default function Hero() {
               </span>
             </div>
             <div className="grid lg:grid-cols-5">
-              <div className="border-b border-border p-6 sm:p-8 lg:col-span-2 lg:border-b-0 lg:border-r">
-                <p className="section-label">Recent Lubbock launch</p>
-                <h2 className="mt-3 text-xl font-semibold tracking-tight text-brand sm:text-2xl">
-                  West Texas Dental Group
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted">
-                  Rebuilt their site for trust and conversions. Appointment
-                  requests increased 240% in the first 90 days.
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {["Strategy", "Design", "Development", "Local SEO"].map(
-                    (tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-brand-accent-soft px-3 py-1 text-xs font-medium text-brand-accent"
-                      >
-                        {tag}
-                      </span>
-                    ),
-                  )}
-                </div>
-              </div>
+<div className="border-b border-border p-6 sm:p-8 lg:col-span-2 lg:border-b-0 lg:border-r">
+  <p className="section-label">Featured Concept Project</p>
+
+  <h2 className="mt-3 text-xl font-semibold tracking-tight text-brand sm:text-2xl">
+    West Texas Dental Group
+  </h2>
+
+  <p className="mt-3 text-sm leading-relaxed text-muted">
+    A concept website created to demonstrate the level of design,
+    strategy, and user experience Elevate Lubbock delivers for local
+    businesses.
+  </p>
+
+  <div className="mt-5 flex flex-wrap gap-2">
+    {["Strategy", "Design", "Development", "Local SEO"].map((tag) => (
+      <span
+        key={tag}
+        className="rounded-full bg-brand-accent-soft px-3 py-1 text-xs font-medium text-brand-accent"
+      >
+        {tag}
+      </span>
+    ))}
+  </div>
+</div>
               <div className="bg-gradient-to-br from-neutral-100 via-white to-brand-accent-soft p-6 sm:p-8 lg:col-span-3">
                 <div className="grid h-full min-h-[180px] grid-cols-12 grid-rows-6 gap-2.5 sm:min-h-[220px] sm:gap-3">
                   <div className="col-span-8 row-span-2 rounded-xl bg-brand/5 transition-colors duration-500 ease-out hover:bg-brand/10" />
@@ -123,8 +133,8 @@ export default function Hero() {
         </Reveal>
 
         <dl className="mx-auto mt-16 grid max-w-4xl gap-8 border-t border-border pt-14 sm:grid-cols-3 sm:gap-10 sm:pt-16">
-          {stats.map(({ value, label }, index) => (
-            <Reveal key={label} delay={index * 80}>
+{pillars.map(({ value, label }, index) => (
+              <Reveal key={label} delay={index * 80}>
               <div className="text-center">
                 <dt className="text-3xl font-semibold tracking-tight text-brand sm:text-4xl">
                   {value}

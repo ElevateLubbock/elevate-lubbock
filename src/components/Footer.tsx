@@ -15,10 +15,19 @@ const footerLinks = {
   ],
 };
 
-const trustStats = [
-  { value: "50+", label: "Local clients served" },
-  { value: "4.9★", label: "Average client rating" },
-  { value: "2019", label: "Serving Lubbock since" },
+const footerHighlights = [
+  {
+    value: "Local",
+    label: "Proudly serving businesses across Lubbock and West Texas",
+  },
+  {
+    value: "Modern",
+    label: "Fast, mobile-friendly websites built to perform",
+  },
+  {
+    value: "Trust",
+    label: "Building lasting relationships through honest service",
+  },
 ];
 
 const serviceAreas = [
@@ -29,7 +38,20 @@ const serviceAreas = [
   "Idalou",
   "South Plains",
 ];
-
+const trustStats = [
+  {
+    value: "Local",
+    label: "Proudly serving West Texas businesses",
+  },
+  {
+    value: "Modern",
+    label: "Fast, mobile-friendly websites",
+  },
+  {
+    value: "Trust",
+    label: "Building our reputation one client at a time",
+  },
+];
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-brand text-white">
