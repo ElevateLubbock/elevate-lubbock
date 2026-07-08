@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #0a0a0a;
+  --background: #f8f8f8;
+  --foreground: #111111;
   --muted: #737373;
   --surface: #ffffff;
-  --surface-elevated: #f5f5f5;
+  --surface-elevated: #f8f8f8;
   --border: #e5e5e5;
-  --brand: #171717;
-  --brand-accent: #2563eb;
-  --brand-accent-soft: #eff6ff;
+  --brand: #111111;
+  --brand-accent: #cc0000;
+  --brand-accent-hover: #a30000;
+  --brand-accent-light: #e54d4d;
+  --brand-accent-soft: #fff5f5;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-duration: 0.55s;
 }
 
 @theme inline {
@@ -21,6 +25,8 @@
   --color-border: var(--border);
   --color-brand: var(--brand);
   --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-hover: var(--brand-accent-hover);
+  --color-brand-accent-light: var(--brand-accent-light);
   --color-brand-accent-soft: var(--brand-accent-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -36,14 +42,473 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+.section-shell {
+  @apply py-28 lg:py-36;
+}
+
 .section-label {
   @apply text-xs font-semibold uppercase tracking-[0.2em] text-brand-accent;
 }
 
 .section-heading {
-  @apply text-3xl font-semibold tracking-tight text-brand sm:text-4xl lg:text-5xl;
+  @apply text-3xl font-semibold tracking-tight text-brand sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1];
 }
 
 .section-subtext {
-  @apply text-base leading-relaxed text-muted sm:text-lg;
+  @apply text-base leading-relaxed text-muted sm:text-lg sm:leading-8;
+}
+
+/* Scroll reveal */
+.motion-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--motion-duration) var(--motion-ease),
+    transform var(--motion-duration) var(--motion-ease);
+  will-change: opacity, transform;
+}
+
+.motion-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section gradient glows */
+.section-glow-light {
+  background: radial-gradient(
+    ellipse 75% 55% at 50% 0%,
+    rgba(204, 0, 0, 0.04),
+    transparent 68%
+  );
+}
+
+.section-glow-accent {
+  background: radial-gradient(
+    ellipse 70% 50% at 50% 20%,
+    rgba(204, 0, 0, 0.05),
+    transparent 65%
+  );
+}
+
+.section-glow-dark {
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    rgba(204, 0, 0, 0.08),
+    transparent 70%
+  );
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary,
+.btn-accent {
+  transition:
+    transform 0.3s var(--motion-ease),
+    background-color 0.3s var(--motion-ease),
+    border-color 0.3s var(--motion-ease),
+    box-shadow 0.3s var(--motion-ease),
+    color 0.3s var(--motion-ease);
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-brand-accent px-7 py-3.5 text-sm font-semibold text-white shadow-sm hover:-translate-y-0.5 hover:bg-brand-accent-hover hover:shadow-md hover:shadow-brand-accent/20 active:translate-y-0;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-full border border-border bg-surface px-7 py-3.5 text-sm font-semibold text-brand shadow-sm hover:-translate-y-0.5 hover:border-neutral-300 hover:bg-surface-elevated hover:shadow-md active:translate-y-0;
+}
+
+.btn-accent {
+  @apply inline-flex items-center justify-center rounded-full bg-brand-accent px-7 py-3.5 text-sm font-semibold text-white shadow-sm hover:-translate-y-0.5 hover:bg-brand-accent-hover hover:shadow-md hover:shadow-brand-accent/20 active:translate-y-0;
+}
+
+/* Animated link underlines */
+.nav-link,
+.text-link {
+  @apply relative py-0.5 text-sm font-medium transition-colors duration-300 ease-out;
+}
+
+.nav-link {
+  @apply text-muted hover:text-brand-accent;
+}
+
+.nav-link-active {
+  @apply text-brand-accent;
+}
+
+.text-link {
+  @apply font-semibold text-brand-accent hover:text-brand-accent-hover;
+}
+
+.nav-link::after,
+.text-link::after {
+  content: "";
+  @apply absolute inset-x-0 -bottom-px h-px origin-left scale-x-0 transition-transform duration-300 ease-out;
+}
+
+.nav-link::after {
+  @apply bg-brand-accent;
+}
+
+.nav-link-active::after {
+  @apply scale-x-100;
+}
+
+.text-link::after {
+  @apply bg-brand-accent;
+}
+
+.nav-link:hover::after,
+.text-link:hover::after {
+  @apply scale-x-100;
+}
+
+.nav-link-accent {
+  @apply relative text-sm font-semibold text-brand-accent transition-colors duration-300 ease-out hover:text-brand-accent-hover;
+}
+
+.nav-link-accent::after {
+  content: "";
+  @apply absolute inset-x-0 -bottom-px h-px origin-left scale-x-0 bg-brand-accent transition-transform duration-300 ease-out;
+}
+
+.nav-link-accent:hover::after {
+  @apply scale-x-100;
+}
+
+.text-link-light {
+  @apply relative inline-block transition-colors duration-300 ease-out hover:text-white;
+}
+
+.text-link-light::after {
+  content: "";
+  @apply absolute inset-x-0 -bottom-px h-px origin-left scale-x-0 bg-white/60 transition-transform duration-300 ease-out;
+}
+
+.text-link-light:hover::after {
+  @apply scale-x-100;
+}
+
+/* Card elevation */
+.motion-card,
+.card-hover {
+  @apply transition-all duration-500 ease-out;
+}
+
+.motion-card:hover,
+.card-hover:hover,
+.service-card:hover,
+.portfolio-card:hover,
+.process-card:hover,
+.pricing-card:hover,
+.includes-card:hover {
+  @apply -translate-y-1 border-neutral-300/90 shadow-lg shadow-neutral-200/40;
+}
+
+.trust-feature:hover {
+  @apply -translate-y-1 border-border/80 bg-background/60 shadow-lg shadow-neutral-200/40;
+}
+
+.service-card {
+  @apply relative flex flex-col rounded-2xl border border-border/80 bg-background p-8 transition-all duration-500 ease-out lg:p-10;
+}
+
+.service-card::before {
+  content: "";
+  @apply pointer-events-none absolute inset-x-0 top-0 h-32 rounded-t-2xl opacity-0 transition-opacity duration-500 ease-out;
+  background: linear-gradient(
+    to bottom,
+    rgba(204, 0, 0, 0.04),
+    transparent
+  );
+}
+
+.service-card:hover::before {
+  @apply opacity-100;
+}
+
+.service-card-icon {
+  @apply flex h-14 w-14 items-center justify-center rounded-2xl border border-brand-accent/10 bg-brand-accent-soft text-brand-accent transition-all duration-500 ease-out;
+}
+
+.service-card:hover .service-card-icon {
+  @apply scale-105 border-brand-accent/20 bg-brand-accent text-white shadow-md shadow-brand-accent/20;
+}
+
+.portfolio-card {
+  @apply overflow-hidden rounded-2xl border border-border/80 bg-surface transition-all duration-500 ease-out;
+}
+
+.trust-feature {
+  @apply rounded-2xl border border-transparent p-8 transition-all duration-500 ease-out sm:p-10;
+}
+
+.trust-feature-icon {
+  @apply flex h-12 w-12 items-center justify-center rounded-2xl border border-border/70 bg-background text-brand transition-all duration-500 ease-out;
+}
+
+.trust-feature:hover .trust-feature-icon {
+  @apply scale-105 border-brand-accent/15 bg-brand-accent-soft text-brand-accent;
+}
+
+.process-card {
+  @apply rounded-2xl border border-border bg-surface p-6 transition-all duration-500 ease-out sm:p-7;
+}
+
+.process-card:hover .process-step-badge {
+  @apply scale-105 border-brand-accent/25 bg-brand-accent-soft text-brand-accent;
+}
+
+.process-step-badge {
+  @apply inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-accent/20 bg-brand-accent-soft text-sm font-semibold text-brand-accent transition-all duration-500 ease-out;
+}
+
+.pricing-card {
+  @apply relative flex flex-col rounded-2xl border p-6 transition-all duration-500 ease-out sm:p-8;
+}
+
+.audit-card {
+  @apply rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition-all duration-500 ease-out sm:p-8;
+}
+
+.audit-card:hover {
+  @apply border-white/20 bg-white/[0.06] shadow-none;
+}
+
+/* Form fields */
+.form-label {
+  @apply block text-sm font-medium text-brand;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  @apply mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-brand outline-none transition-[border-color,box-shadow] duration-300 ease-out placeholder:text-muted/55 focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/15;
+}
+
+.form-select {
+  @apply appearance-none bg-[length:1rem] bg-[right_1rem_center] bg-no-repeat pr-10;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23737373' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+}
+
+.form-textarea {
+  @apply resize-y min-h-[7rem];
+}
+
+.form-card {
+  @apply rounded-2xl border border-border/80 bg-surface p-6 shadow-xl shadow-neutral-200/35 sm:p-8 lg:p-10;
+}
+
+.includes-card {
+  @apply rounded-2xl border border-border/80 bg-surface p-8 shadow-xl shadow-neutral-200/35 sm:p-10 lg:p-12;
+}
+
+.includes-item {
+  @apply flex items-center gap-3.5 rounded-xl px-3 py-2.5 transition-all duration-300 ease-out;
+}
+
+.includes-item:hover {
+  @apply bg-brand-accent-soft/40;
+}
+
+.includes-check {
+  @apply flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-brand-accent/15 bg-brand-accent-soft text-brand-accent transition-all duration-300 ease-out;
+}
+
+.includes-item:hover .includes-check {
+  @apply scale-105 border-brand-accent/25 bg-brand-accent text-white shadow-sm shadow-brand-accent/15;
+}
+
+/* Hero orbs */
+.hero-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  will-change: transform;
+}
+
+.hero-orb-1 {
+  top: -8%;
+  left: 50%;
+  height: 28rem;
+  width: 28rem;
+  --tw-translate-x: -50%;
+  transform: translateX(var(--tw-translate-x));
+  background: rgba(204, 0, 0, 0.07);
+  animation: float-drift-1 22s ease-in-out infinite;
+}
+
+.hero-orb-2 {
+  top: 12%;
+  right: -6%;
+  height: 22rem;
+  width: 22rem;
+  background: rgba(204, 0, 0, 0.05);
+  animation: float-drift-2 26s ease-in-out infinite;
+}
+
+.hero-orb-3 {
+  top: 28%;
+  left: -8%;
+  height: 18rem;
+  width: 18rem;
+  background: rgba(17, 17, 17, 0.04);
+  animation: float-drift-3 30s ease-in-out infinite;
+}
+
+/* CTA panel */
+.cta-panel {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 24px 80px -20px rgba(0, 0, 0, 0.55);
+}
+
+.cta-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(72px);
+  will-change: transform;
+}
+
+.cta-orb-1 {
+  top: -20%;
+  left: 20%;
+  height: 20rem;
+  width: 20rem;
+  background: rgba(204, 0, 0, 0.1);
+  animation: float-drift-1 18s ease-in-out infinite;
+}
+
+.cta-orb-2 {
+  bottom: -25%;
+  right: 10%;
+  height: 18rem;
+  width: 18rem;
+  background: rgba(204, 0, 0, 0.06);
+  animation: float-drift-2 22s ease-in-out infinite;
+}
+
+.cta-btn-primary,
+.cta-btn-secondary {
+  transition:
+    transform 0.3s var(--motion-ease),
+    background-color 0.3s var(--motion-ease),
+    border-color 0.3s var(--motion-ease),
+    box-shadow 0.3s var(--motion-ease);
+}
+
+.cta-btn-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-semibold text-brand shadow-lg shadow-black/20 hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-xl hover:shadow-black/30 active:translate-y-0;
+}
+
+.cta-btn-secondary {
+  @apply inline-flex items-center justify-center rounded-full border border-white/20 bg-white/[0.04] px-8 py-4 text-sm font-semibold text-white backdrop-blur-sm hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.08] active:translate-y-0;
+}
+
+@keyframes float-drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(20px, 16px) scale(1.05);
+  }
+}
+
+@keyframes float-drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-24px, 14px) scale(1.06);
+  }
+}
+
+@keyframes float-drift-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(18px, -12px) scale(1.04);
+  }
+}
+
+.hero-orb-1 {
+  animation-name: float-drift-1-hero;
+}
+
+@keyframes float-drift-1-hero {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  50% {
+    transform: translateX(-45%) translateY(20px) scale(1.04);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .motion-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-orb,
+  .cta-orb {
+    animation: none !important;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-accent,
+  .cta-btn-primary,
+  .cta-btn-secondary,
+  .motion-card,
+  .card-hover,
+  .service-card,
+  .portfolio-card,
+  .trust-feature,
+  .process-card,
+  .pricing-card,
+  .audit-card,
+  .includes-card,
+  .includes-item,
+  .includes-check {
+    transition: none;
+  }
+
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-accent:hover,
+  .cta-btn-primary:hover,
+  .cta-btn-secondary:hover,
+  .motion-card:hover,
+  .card-hover:hover,
+  .service-card:hover,
+  .portfolio-card:hover,
+  .trust-feature:hover,
+  .process-card:hover,
+  .pricing-card:hover,
+  .includes-card:hover {
+    transform: none;
+  }
+
+  .service-card:hover .service-card-icon,
+  .trust-feature:hover .trust-feature-icon,
+  .process-card:hover .process-step-badge,
+  .includes-item:hover .includes-check {
+    transform: none;
+  }
+
+  .animate-pulse {
+    animation: none !important;
+  }
 }

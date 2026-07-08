@@ -1,75 +1,103 @@
 import Link from "next/link";
+import HeroBackground from "@/components/HeroBackground";
+import Reveal from "@/components/Reveal";
 
 const stats = [
-  { value: "50+", label: "Local businesses served" },
-  { value: "3×", label: "Average lead increase" },
-  { value: "14 days", label: "Typical launch timeline" },
+  { value: "50+", label: "Lubbock businesses served" },
+  { value: "3.2×", label: "Avg. increase in qualified leads" },
+  { value: "14 days", label: "Median time to launch" },
+];
+
+const trustBarItems = [
+  "Mobile First",
+  "SEO Ready",
+  "Fast Loading",
+  "Built for Lubbock Businesses",
 ];
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(37,99,235,0.12),transparent)]" />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,transparent,rgba(250,250,250,1))]" />
+      <HeroBackground />
 
-      <div className="mx-auto max-w-7xl px-6 pb-20 pt-16 lg:px-8 lg:pb-28 lg:pt-24">
+      <div className="mx-auto max-w-7xl px-5 pb-24 pt-16 sm:px-6 lg:px-8 lg:pb-32 lg:pt-24">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-sm text-muted shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-brand-accent" />
-            Lubbock&apos;s premium web studio for growing businesses
-          </div>
+          <Reveal>
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/60 px-4 py-2 text-xs font-medium text-muted shadow-sm backdrop-blur-sm sm:mb-10 sm:text-sm">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brand-accent" />
+              Proudly serving Lubbock &amp; the South Plains
+            </div>
+          </Reveal>
 
-          <h1 className="text-4xl font-semibold leading-[1.1] tracking-tight text-brand sm:text-5xl lg:text-7xl">
-            Websites that turn visitors into{" "}
-            <span className="bg-gradient-to-r from-brand-accent to-blue-400 bg-clip-text text-transparent">
-              paying customers
-            </span>
-          </h1>
+          <Reveal delay={80}>
+            <h1 className="text-[2.125rem] font-semibold leading-[1.06] tracking-[-0.03em] text-brand sm:text-5xl sm:leading-[1.05] lg:text-[3.75rem] lg:leading-[1.04]">
+              Your Website Should Be Your{" "}
+              <span className="bg-gradient-to-r from-brand via-[#333333] to-brand-accent bg-clip-text text-transparent">
+                Best Salesperson.
+              </span>
+            </h1>
+          </Reveal>
 
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-            Elevate Lubbock partners with local businesses to design and build
-            high-performance websites — strategic, beautiful, and built to
-            generate real revenue.
-          </p>
+          <Reveal delay={160}>
+            <p className="mx-auto mt-6 max-w-2xl text-[1.0625rem] leading-[1.65] text-muted sm:mt-8 sm:text-xl sm:leading-[1.7]">
+              We design high-converting websites for Lubbock businesses that want
+              more calls, more leads, and more customers.
+            </p>
+          </Reveal>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/contact"
-              className="inline-flex w-full items-center justify-center rounded-full bg-brand px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-neutral-800 sm:w-auto"
-            >
-              Book a Free Strategy Call
-            </Link>
-            <Link
-              href="/#portfolio"
-              className="inline-flex w-full items-center justify-center rounded-full border border-border bg-surface px-8 py-4 text-sm font-semibold text-brand transition-all hover:border-neutral-300 hover:bg-surface-elevated sm:w-auto"
-            >
-              View Our Work
-            </Link>
-          </div>
+          <Reveal delay={240}>
+            <div className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
+              <Link href="/#audit" className="btn-accent w-full px-8 py-4 sm:w-auto">
+                Get My Free Website Audit
+              </Link>
+              <Link
+                href="/#portfolio"
+                className="btn-secondary w-full px-8 py-4 sm:w-auto"
+              >
+                View Our Work
+              </Link>
+            </div>
+          </Reveal>
+
+          <Reveal delay={320}>
+            <div className="mx-auto mt-10 inline-flex max-w-full flex-wrap items-center justify-center gap-x-5 gap-y-2.5 rounded-2xl border border-border/70 bg-surface/50 px-5 py-3.5 shadow-sm backdrop-blur-sm sm:mt-12 sm:gap-x-6 sm:rounded-full sm:px-7">
+              {trustBarItems.map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted sm:text-sm"
+                >
+                  <span className="text-brand-accent" aria-hidden="true">
+                    ✓
+                  </span>
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Reveal>
         </div>
 
-        <div className="mx-auto mt-20 max-w-5xl">
-          <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl shadow-neutral-200/60">
+        <Reveal delay={120} className="mx-auto mt-20 max-w-5xl sm:mt-24">
+          <div className="motion-card overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl shadow-neutral-200/50">
             <div className="flex items-center gap-2 border-b border-border bg-surface-elevated px-4 py-3">
-              <span className="h-3 w-3 rounded-full bg-red-400" />
-              <span className="h-3 w-3 rounded-full bg-yellow-400" />
-              <span className="h-3 w-3 rounded-full bg-green-400" />
-              <span className="ml-4 text-xs text-muted">
-                elevatelubbock.com — preview
+              <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+              <span className="ml-3 truncate text-xs text-muted">
+                westtexasdental.com — Lubbock, TX
               </span>
             </div>
-            <div className="grid gap-0 lg:grid-cols-5">
-              <div className="border-b border-border p-8 lg:col-span-2 lg:border-b-0 lg:border-r">
-                <p className="section-label">Featured build</p>
-                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-brand">
+            <div className="grid lg:grid-cols-5">
+              <div className="border-b border-border p-6 sm:p-8 lg:col-span-2 lg:border-b-0 lg:border-r">
+                <p className="section-label">Recent Lubbock launch</p>
+                <h2 className="mt-3 text-xl font-semibold tracking-tight text-brand sm:text-2xl">
                   West Texas Dental Group
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-muted">
-                  A conversion-focused site that increased appointment requests
-                  by 240% in the first 90 days.
+                  Rebuilt their site for trust and conversions. Appointment
+                  requests increased 240% in the first 90 days.
                 </p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {["Strategy", "UI Design", "Development", "SEO"].map(
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {["Strategy", "Design", "Development", "Local SEO"].map(
                     (tag) => (
                       <span
                         key={tag}
@@ -81,27 +109,31 @@ export default function Hero() {
                   )}
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-neutral-100 via-white to-brand-accent-soft p-8 lg:col-span-3">
-                <div className="grid h-full min-h-[220px] grid-cols-12 grid-rows-6 gap-3">
-                  <div className="col-span-8 row-span-2 rounded-xl bg-brand/5" />
-                  <div className="col-span-4 row-span-3 rounded-xl bg-brand-accent/10" />
-                  <div className="col-span-5 row-span-2 rounded-xl bg-brand/5" />
-                  <div className="col-span-3 row-span-2 rounded-xl bg-brand-accent/20" />
-                  <div className="col-span-4 row-span-1 rounded-xl bg-brand/5" />
+              <div className="bg-gradient-to-br from-neutral-100 via-white to-brand-accent-soft p-6 sm:p-8 lg:col-span-3">
+                <div className="grid h-full min-h-[180px] grid-cols-12 grid-rows-6 gap-2.5 sm:min-h-[220px] sm:gap-3">
+                  <div className="col-span-8 row-span-2 rounded-xl bg-brand/5 transition-colors duration-500 ease-out hover:bg-brand/10" />
+                  <div className="col-span-4 row-span-3 rounded-xl bg-brand-accent/10 transition-colors duration-500 ease-out hover:bg-brand-accent/15" />
+                  <div className="col-span-5 row-span-2 rounded-xl bg-brand/5 transition-colors duration-500 ease-out hover:bg-brand/10" />
+                  <div className="col-span-3 row-span-2 rounded-xl bg-brand-accent/20 transition-colors duration-500 ease-out hover:bg-brand-accent/25" />
+                  <div className="col-span-4 row-span-1 rounded-xl bg-brand/5 transition-colors duration-500 ease-out hover:bg-brand/10" />
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        <dl className="mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-3">
-          {stats.map(({ value, label }) => (
-            <div key={label} className="text-center">
-              <dt className="text-3xl font-semibold tracking-tight text-brand sm:text-4xl">
-                {value}
-              </dt>
-              <dd className="mt-2 text-sm text-muted">{label}</dd>
-            </div>
+        <dl className="mx-auto mt-16 grid max-w-4xl gap-8 border-t border-border pt-14 sm:grid-cols-3 sm:gap-10 sm:pt-16">
+          {stats.map(({ value, label }, index) => (
+            <Reveal key={label} delay={index * 80}>
+              <div className="text-center">
+                <dt className="text-3xl font-semibold tracking-tight text-brand sm:text-4xl">
+                  {value}
+                </dt>
+                <dd className="mt-2.5 text-sm leading-relaxed text-muted">
+                  {label}
+                </dd>
+              </div>
+            </Reveal>
           ))}
         </dl>
       </div>

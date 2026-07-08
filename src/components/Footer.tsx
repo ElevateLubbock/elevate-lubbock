@@ -1,9 +1,11 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 const footerLinks = {
   company: [
     { href: "/about", label: "About" },
     { href: "/#process", label: "Process" },
+    { href: "/#audit", label: "Free Website Audit" },
     { href: "/contact", label: "Contact" },
   ],
   services: [
@@ -11,24 +13,51 @@ const footerLinks = {
     { href: "/#services", label: "Development" },
     { href: "/#services", label: "Local SEO" },
   ],
-  work: [
-    { href: "/#portfolio", label: "Portfolio" },
-    { href: "/#pricing", label: "Pricing" },
-  ],
 };
+
+const trustStats = [
+  { value: "50+", label: "Local clients served" },
+  { value: "4.9★", label: "Average client rating" },
+  { value: "2019", label: "Serving Lubbock since" },
+];
+
+const serviceAreas = [
+  "Lubbock",
+  "Wolfforth",
+  "Shallowater",
+  "Slaton",
+  "Idalou",
+  "South Plains",
+];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-brand text-white">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-4">
-          <div className="lg:col-span-1">
-            <Link href="/" className="text-xl font-semibold tracking-tight">
-              Elevate<span className="text-brand-accent">.</span>
-            </Link>
+    <footer className="border-t border-white/10 bg-brand text-white">
+      <div className="border-b border-white/10 bg-white/[0.03]">
+        <div className="mx-auto grid max-w-7xl gap-6 px-5 py-10 sm:grid-cols-3 sm:px-6 lg:px-8">
+          {trustStats.map(({ value, label }) => (
+            <div key={label} className="text-center sm:text-left">
+              <p className="text-2xl font-semibold tracking-tight">{value}</p>
+              <p className="mt-1 text-sm text-white/50">{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-6 lg:px-8 lg:py-16">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Logo variant="light" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
-              Premium websites for Lubbock businesses that want more customers,
-              stronger brands, and measurable growth online.
+              Lubbock&apos;s premium web studio for local businesses that want
+              more customers, stronger credibility, and a website that actually
+              pays for itself.
+            </p>
+            <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-white/40">
+              Service Area
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-white/60">
+              {serviceAreas.join(" · ")}
             </p>
           </div>
 
@@ -41,7 +70,7 @@ export default function Footer() {
                 <li key={label}>
                   <Link
                     href={href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-sm text-white/70 text-link-light"
                   >
                     {label}
                   </Link>
@@ -59,7 +88,7 @@ export default function Footer() {
                 <li key={label}>
                   <Link
                     href={href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-sm text-white/70 text-link-light"
                   >
                     {label}
                   </Link>
@@ -70,41 +99,48 @@ export default function Footer() {
 
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-white/40">
-              Get in Touch
+              Contact
             </p>
             <ul className="mt-4 space-y-3 text-sm text-white/70">
-              <li>Lubbock, Texas</li>
+              <li>Lubbock, Texas 79401</li>
               <li>
-                <a href="tel:8065551234" className="hover:text-white">
+                <a
+                  href="tel:8065551234"
+                  className="text-link-light"
+                >
                   (806) 555-1234
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:hello@elevatelubbock.com"
-                  className="hover:text-white"
+                  className="text-link-light"
                 >
                   hello@elevatelubbock.com
                 </a>
               </li>
             </ul>
+            <Link href="/#audit" className="nav-link-accent mt-6 inline-flex">
+              Claim your free audit →
+            </Link>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-          <p className="text-xs text-white/40">
-            © {new Date().getFullYear()} Elevate Lubbock. All rights reserved.
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+          <p className="text-center text-xs text-white/40 sm:text-left">
+            © {new Date().getFullYear()} Elevate Lubbock. Locally owned &
+            operated. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            {footerLinks.work.map(({ href, label }) => (
-              <Link
-                key={label}
-                href={href}
-                className="text-xs text-white/40 transition-colors hover:text-white/70"
-              >
-                {label}
-              </Link>
-            ))}
+          <div className="flex flex-wrap justify-center gap-5 sm:justify-end">
+            <Link href="/#portfolio" className="text-link-light text-xs text-white/40">
+              Portfolio
+            </Link>
+            <Link href="/#approach" className="text-link-light text-xs text-white/40">
+              Our Approach
+            </Link>
+            <Link href="/contact" className="text-link-light text-xs text-white/40">
+              Privacy Policy
+            </Link>
           </div>
         </div>
       </div>
