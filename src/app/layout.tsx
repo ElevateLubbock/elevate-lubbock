@@ -15,11 +15,46 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elevate Lubbock | Premium Websites for Local Businesses",
+  metadataBase: new URL("https://elevatelubbock.com"),
+  title: {
+    default: "Elevate Lubbock | Premium Websites for Local Businesses",
+    template: "%s | Elevate Lubbock",
+  },
   description:
-    "Elevate Lubbock builds high-converting websites for local businesses in Lubbock, Texas. Strategy, design, and development that turns visitors into customers.",
+    "Elevate Lubbock builds modern, trustworthy websites for local businesses in Lubbock, Texas. Strategy, design, and development built to help visitors become customers.",
+  keywords: [
+    "Lubbock web design",
+    "Lubbock website design",
+    "websites for local businesses",
+    "small business websites Lubbock",
+    "Elevate Lubbock",
+  ],
+  authors: [{ name: "Elevate Lubbock" }],
+  creator: "Elevate Lubbock",
+  publisher: "Elevate Lubbock",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Elevate Lubbock | Premium Websites for Local Businesses",
+    description:
+      "Modern, trustworthy websites for local businesses in Lubbock, Texas.",
+    url: "https://elevatelubbock.com",
+    siteName: "Elevate Lubbock",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Elevate Lubbock | Premium Websites for Local Businesses",
+    description:
+      "Modern, trustworthy websites for local businesses in Lubbock, Texas.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
