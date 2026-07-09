@@ -67,34 +67,34 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
-       <Script
-  id="local-business-schema"
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "Elevate Lubbock",
-      url: "https://elevatelubbock.com",
-      image: "https://elevatelubbock.com/brand/elevate-icon.svg",
-      description:
-        "Elevate Lubbock builds modern websites that help local businesses earn trust and grow.",
-      areaServed: {
-        "@type": "City",
-        name: "Lubbock",
-        addressRegion: "TX",
-        addressCountry: "US",
-      },
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Lubbock",
-        addressRegion: "TX",
-        addressCountry: "US",
-      },
-      priceRange: "$$",
-    }),
-  }}
-/>
+        <Script
+          id="local-business-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Elevate Lubbock",
+              url: "https://elevatelubbock.com",
+              image: "https://elevatelubbock.com/brand/elevate-icon.svg",
+              description:
+                "Elevate Lubbock builds modern websites that help local businesses earn trust and grow.",
+              areaServed: {
+                "@type": "City",
+                name: "Lubbock",
+                addressRegion: "TX",
+                addressCountry: "US",
+              },
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Lubbock",
+                addressRegion: "TX",
+                addressCountry: "US",
+              },
+              priceRange: "$$",
+            }),
+          }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
